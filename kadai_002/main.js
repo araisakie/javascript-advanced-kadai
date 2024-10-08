@@ -85,11 +85,8 @@ const rankCheck = score => {
 };
 
 // ゲームを終了
-const gameOver = id => {
-  clearInterval(id);
+const gameOver = () => {
   const result = confirm(rankCheck(score));
-
-
 
   // OKボタンをクリックされたらリロードする
   if(result == true) {
@@ -114,6 +111,8 @@ const timer = () => {
       typedfield.textContent = 'タイムアップ！';
       typedfield.style.color = 'white';
       untypedfield.style.display = 'none';
+      // カウントダウンが0になったらタイマーを止める
+      clearInterval(id);
       // 100ミリ秒後にgemeOver()メソッドを呼ぶ
       setTimeout(() => {
         gameOver(id);
